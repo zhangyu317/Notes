@@ -1,0 +1,49 @@
+1 spring传统的注解
+@Controller
+@RequestMapping("/user")
+public class UserController { ...
+	@RequestMapping("/user")
+
+2 springboot 注解
+@RestController
+
+3
+快速删除没用的包的引入:Ctrl + Shift + O 
+
+4
+@JsonIgnore: 返回的json忽略掉key value
+private String passWord;
+
+@JsonInclude(Include.NON_NULL): 返回的json忽略掉是null的key value
+
+@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")
+private Date birthday;
+
+
+5热部署
+devtools可以实现页面热部署（即修改页面后会立即生效）
+这个可以直接在application.properties文件中配置spring.thymeleaf.cache=false来实现
+实现类文件热部署（类文件修改后不会立即生效），实现对属性文件的热部署
+即devtools会监听classpath下的文件变动，并且会立即重启应用（发生在保存时机）
+
+6<dependency>
+	...
+	<optional>true</optional> 依赖不会传递，该项目依赖devtools；之后依赖boot项目的项目如果想要使用devtools，需要重新引入
+</dependency>
+
+7 
+application.properties
+	#关闭缓存，即时刷新
+	spring.thymeleaf.cache= false
+	#热部署生效
+	spring.devtools.restart.enabled=true
+	#设置重启的目录，添加哪个目录的文件需要restart
+	spring.devtools.restart.additional-path=src/main/java
+	#排除那个目录的文件不需要restart
+	spring.devtools.restart.exclude=static/**,public/**
+	#classpath目录下的WEB-INFO文件夹内容修改不重启
+	spring.devtools.restart.exclude=WEB-INFO/**
+
+8
+Resource bean = new Resource();
+BeanUtils.copyProperties(resource, bean);

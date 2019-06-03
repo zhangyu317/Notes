@@ -1,0 +1,34 @@
+1 
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-configuration-processor</artifactId>
+	<optional>true</optional>
+</dependency>
+2
+自定义文件 resource.properties
+user.id=610581198811111111
+user.name=aa
+user.sex=aa
+user.age=31
+3
+定义Resource.java 
+@Configuration
+@ConfigurationProperties(prefix="user")
+@PropertySource(value="classpath:resource.properties")
+4
+写Controler
+@RestController
+public class TestController {
+	@Autowired
+	Resource resource;
+	
+	@RequestMapping("/getUser")
+	public JSONResult getUser() {
+		Resource bean = new Resource();
+		BeanUtils.copyProperties(resource, bean);
+		System.out.println("bean"+bean);
+		return JSONResult.ok(bean);
+	}
+}
+
+** 注意 不能直接返回resource

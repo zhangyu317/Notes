@@ -1,3 +1,5 @@
+使用场景：解决请求的共性问题，比如：乱码问题，权限验证问题
+Spring Boot：
 1. 使用 @Configuration 配置拦截器
 
 2. 继承 WebMvcConfigurerAdapter
@@ -86,3 +88,19 @@ public class OneInterceptor implements HandlerInterceptor  {
 		}
 	}
 }
+
+=============================================================================================
+Spring MVC 过滤器： 所有请求都会被拦截， 原理和作用和拦截器是非常相似的
+在web.xml中配置
+<filter>
+   <filter-name>随便起 encoding</filter-name>
+   <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+</filter>
+<filter-mapping>
+   <filter-name>随便起 encoding</filter-name>
+   <url-pattern>*</url-pattern>
+   <init-param>
+	<param-name>encoding不能改</param-name>
+	<param-value>utf-8</param-value>
+   </init-param>
+</filter-mapping>

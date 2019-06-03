@@ -6,7 +6,7 @@ Spring Boot：
 
 3.重写 addInterceptors 添加需要的拦截器地址
 
-4.创建自己的拦截器并实现HandlerInterceptor接口
+4.创建自己的拦截器并实现HandlerInterceptor接口（第二种方法是实现WebRequestInterceptor接口）
 
 
 

@@ -11,7 +11,7 @@ Spring Boot：
 
 
 1 com.imooc.config
-@Configuration
+@Configuration    //在spring mvc 中这个类可以用xml去实现
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 	@Override
